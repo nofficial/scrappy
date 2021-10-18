@@ -14,7 +14,7 @@ var searchTerm = "";
         useUnifiedTopology: true,
         useNewUrlParser: true,
     })
-    const browser = await puppeteer.launch({  headless: false, });
+    const browser = await puppeteer.launch({  headless: true, });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1000 })
 
