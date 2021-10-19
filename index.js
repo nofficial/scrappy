@@ -14,7 +14,7 @@ var searchTerm = "";
         useUnifiedTopology: true,
         useNewUrlParser: true,
     })
-    const browser = await puppeteer.launch({  headless: true, });
+    const browser = await puppeteer.launch({  headless: false, });
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1000 })
 
@@ -35,7 +35,7 @@ var searchTerm = "";
 
     var docCount = 1;
     var closeProgram = false;
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 2000; i++) {
         await page.waitForSelector(".tag-list");
         console.log("Page: ", i);
 
@@ -57,7 +57,7 @@ var searchTerm = "";
             await sleep(300)
             let itemList = document.querySelectorAll(".horizontal-grid__item");
 
-            console.log(finalList)
+            // console.log(finalList)
             itemList.forEach(item => {
                 try {
                     // item.scrollIntoView()
@@ -76,14 +76,14 @@ var searchTerm = "";
             return finalList
         });
 
-        console.log(~ /*finalList.map(i => { return { source: i.source, res: i.resolution } }),*/ finalList.length);
-
+        console.log(/*finalList.map(i => { return { source: i.source, res: i.resolution } }),*/ finalList.length);
+        
         var isDisabled = await page.evaluate(() => {
             return document.querySelector(".paginator__next-button").classList.contains("disabled")
         })
 
 
-        if (i < 1000) {
+        if (i < 0) {
             // await sleep(300);
             try {
                 let dataSet = await RedG.insertMany(finalList, { ordered: false, })
