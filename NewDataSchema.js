@@ -25,4 +25,4 @@ const vidSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("full_redg", vidSchema);
+module.exports = mongoose.model("final_redg", vidSchema);
